@@ -1,0 +1,39 @@
+<div class="example-form" style="padding-top:40px!important;">
+    <form #myform="ngForm" (ngSubmit)="newCourse(myform)">
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Course Code" name="course_code" ngModel>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Title" name="course_title" ngModel>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Major</mat-label>
+            <mat-select matNativeControl name="major_id" ngModel>
+                <mat-option *ngFor="let major of majors" [value]="major.major_id">
+                    {{major.major_desc}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <!-- <mat-form-field class="example-full-width">
+                <input matInput placeholder="Description" name="course_desc" ngModel>
+           </mat-form-field> -->
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Department</mat-label>
+            <mat-select matNativeControl required name="course_department" ngModel>
+                <mat-option *ngFor="let department of departments" [value]="department.department_id">
+                    {{department.department_desc}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="form-field">
+            <button mat-button mat-raised-button type="submit" class="example-full-width" color="primary">Save</button>
+        </div>
+    </form>
+</div>

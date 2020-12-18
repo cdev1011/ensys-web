@@ -1,0 +1,41 @@
+<mat-sidenav-container class="sidenav-container" >
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="!(isHandset$ | async)">
+
+      <mat-nav-list class="text-center">
+        <div class="profile-img-holder mx-auto">
+          <img src="assets/images/STCI-Logo-new.png" alt="" class="">
+        </div>
+        <label><b>Enrollment System</b></label>
+        <mat-divider class="mb-4"></mat-divider>
+        <ng-material-multilevel-menu [configuration]='config' [items]='appitems' (selectedItem)="selectedItem($event)">
+        </ng-material-multilevel-menu>
+        <!-- <a mat-list-item routerLink=""><i class="material-icons mr-2">dashboard</i>Dashboard</a>
+        <a mat-list-item routerLink="enrollment"><i class="material-icons mr-2">assignment</i>Enrollment</a>
+        <a mat-list-item routerLink="schedules"><i class="material-icons mr-2">calendar_today</i>Schedules</a>
+        <a mat-list-item routerLink="student-list"><i class="material-icons mr-2">people_outline</i>Students</a>
+        <a mat-list-item routerLink="manage"><i class="material-icons mr-2">vertical_split</i>Manage</a>
+        <a mat-list-item routerLink="manage"><i class="material-icons mr-2">settings</i>Setup</a> -->
+        <!-- <a mat-list-item routerLink="enrollment"><i class="material-icons mr-2">pie_chart</i>Reports</a> -->
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content style="background-color:white!important;">
+      <mat-toolbar>
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <div class="top-components">
+        </div>
+      </mat-toolbar>
+      <!-- Add Content Here -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

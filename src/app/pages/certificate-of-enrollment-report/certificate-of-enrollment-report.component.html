@@ -1,0 +1,55 @@
+<div class="col mt-3">
+    <button mat-flat-button style="background-color: #bdc3c7;" (click)="print()">Print Grade Sheet</button>
+</div>
+
+<div id="print-section" style="padding-top: 30px; padding-left: 10px; padding-right: 10px;">
+
+    <div class="row justify-content-center">
+        <div class="col-1">
+            <div class="profile-img-holder mx-auto">
+                <img src="assets/images/STCI-Logo-new.png" alt="" class="">
+            </div>
+        </div>
+
+        <div class="col-4 mt-3 pt-4" style="text-align: center;">
+            <div class="row">
+                <h4 style="margin: 0 auto;">
+                    SAINT TONIS COLLEGE, INC
+                </h4>
+            </div>
+
+            <div class="row mt-3">
+                <h5 style="margin: 0 auto;">
+                    OFFICE OF THE REGISTRAR
+                </h5>
+            </div>
+
+            <HR>
+
+            <div class="row mt-3">
+                <h3 style="margin: 0 auto;">
+                    CERTIFICATION
+                </h3>
+            </div>
+
+            <div class="row mt-20">
+                <p>TO WHOM IT MAY CONCERN:</p><BR>
+                <p> This is to certify that <b>{{ getName() }}</b> is officially enrolled as {{ getCourse() }} student of Saint Tonis College last {{ getEnrollments() }} </p>
+                <br>
+                <p>This certification is issued to the above-named student for general purposes only.</p>
+
+                <br>
+
+                <p>Issued this {{ getDate() }} at Saint Tonis College, Inc., Bulanao, Tabuk, Kalinga.</p>
+            </div>
+        </div>
+
+        <div class="col-1">
+            <div class="profile-img-holder mx-auto">
+                <img src="assets/images/school_logo.png" alt="" class="">
+            </div>
+        </div>
+    </div>
+
+
+</div>

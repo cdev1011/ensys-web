@@ -1,0 +1,73 @@
+<div class="page-container">
+
+  <mat-toolbar class="page-toolbar mb-3">Assessment Setup</mat-toolbar>
+
+  <div class="row table-card">
+    <div class="col">
+      <mat-card>
+          <h4>Manage Course Fees</h4>
+          <div class="row mt-2">
+              <div class="col-2 mr-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Search</mat-label>
+                  <input matInput (keyup)="filterCourseFees($event.target.value)" placeholder="">
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+              </div>
+              <div class="col-8">
+                <button mat-button appearance="outline" class=" mt-1 mr-2" style="height:40px;" (click)="newCourseFee()"
+                mat-flat-button color="primary">New Course Fee</button>
+
+                  <button mat-button appearance="outline" class=" mt-1 mr-2" style="height:40px;" (click)="ManageFeeTypes()"
+                  mat-flat-button style="background-color:#54a0ff; color:white;">Fee Types</button>
+
+                  <button mat-button appearance="outline" class=" mt-1" style="height:40px;" (click)="ManageFeeCategory()"
+                  mat-flat-button style="background-color: #1dd1a1; color:white;">Fee Categories</button>
+              </div>
+              
+            </div>
+
+            <table mat-table [dataSource]="courseFeesData">
+
+                <ng-container matColumnDef="course_desc">
+                    <th mat-header-cell *matHeaderCellDef> Course </th>
+                    <td mat-cell *matCellDef="let courseFee"> {{courseFee.course_full_info}} </td>
+                  </ng-container>
+
+                <ng-container matColumnDef="fee_type_desc">
+                  <th mat-header-cell *matHeaderCellDef> Fee </th>
+                  <td mat-cell *matCellDef="let courseFee"> {{courseFee.fee_type_desc}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="sy_id">
+                  <th mat-header-cell *matHeaderCellDef> School Year </th>
+                  <td mat-cell *matCellDef="let courseFee"> {{courseFee.start}} - {{courseFee.end}} </td>
+                </ng-container>
+
+                  <ng-container matColumnDef="price">
+                      <th mat-header-cell *matHeaderCellDef> Price </th>
+                      <td mat-cell *matCellDef="let courseFee"> {{courseFee.price}} </td>
+                    </ng-container>
+      
+      
+                <ng-container matColumnDef="Update">
+                  <th mat-header-cell *matHeaderCellDef class="pl-3">Update</th>
+                  <td mat-cell *matCellDef="let courseFee"> <button mat-button (click)="updateCourseFee(courseFee)"><i class="material-icons">edit</i></button></td>
+                </ng-container>
+      
+                <ng-container matColumnDef="Delete">
+                  <th mat-header-cell *matHeaderCellDef class="pl-3">Delete</th>
+                  <td mat-cell *matCellDef="let courseFee"> <button mat-button (click)="DeleteCourseFee(courseFee.course_fee_id)"><i
+                        class="material-icons">delete_outline</i></button>
+                  </td>
+                </ng-container>
+      
+                <tr mat-header-row *matHeaderRowDef="courseFeesColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: courseFeesColumns;"></tr>
+              </table>
+      
+              <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </mat-card>
+    </div>
+  </div>
+</div>

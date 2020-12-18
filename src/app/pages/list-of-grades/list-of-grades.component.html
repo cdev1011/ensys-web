@@ -1,0 +1,48 @@
+<div class="reports-container">
+    <mat-toolbar class="page-toolbar mb-3">List Of Grades</mat-toolbar>
+
+    <div class="mat-elevation-z8 px-4" style=" border-top: 20px solid #485460;">
+
+        <form [formGroup]="FilterForm"  class="mt-2">
+            <div class="row">
+                <div class="mr-2">
+                    <mat-form-field class="full-width">
+                        <mat-label>Course</mat-label>
+                        <mat-select matNativeControl required ngModel formControlName="EnrollmentCourse">
+                            <mat-option *ngFor="let course of courses" [value]="course">
+                                {{course.full_course_desc}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="mr-2">
+                    <mat-form-field class="full-width">
+                        <mat-label>School Year</mat-label>
+                        <mat-select matNativeControl required ngModel formControlName="SchoolYear">
+                            <mat-option *ngFor="let year of schoolYears" [value]="year">
+                                {{year.sy_full_desc}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="mr-2">
+                    <mat-form-field class="full-width">
+                        <mat-label>Semester</mat-label>
+                        <mat-select matNativeControl required ngModel formControlName="EnrollmentSemester">
+                            <mat-option *ngFor="let sem of semesters" [value]="sem">
+                                {{sem.semester_desc}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <button mat-flat-button class="mt-1" style="background-color: #bdc3c7;" type="button" (click)="showList()">Show List of
+                        Grades</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

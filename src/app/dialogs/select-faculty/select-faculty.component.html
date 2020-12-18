@@ -1,0 +1,50 @@
+<div class="reports-container">
+    <mat-toolbar class="page-toolbar mb-3">Subjects</mat-toolbar>
+
+    <div class="row mt-4">
+        <div class="col-xl-3">
+            <mat-form-field appearance="outline">
+                <mat-label>Search</mat-label>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+
+
+    <table mat-table [dataSource]="dataSource">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef> Instructor Name </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.faculty_fname + " " + element.faculty_mname + " " + element.faculty_lname }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Designation">
+            <th mat-header-cell *matHeaderCellDef> Designation </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.designation }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Specialization">
+            <th mat-header-cell *matHeaderCellDef> Specialization </th>
+            <td mat-cell *matCellDef="let element">
+                {{element.specialization }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Select">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element">
+                    <label (click)="selectFaculty(element.faculty_id,element.faculty_fname,element.faculty_lname)" style="cursor:pointer; color:#575fcf;">Select</label>
+                </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

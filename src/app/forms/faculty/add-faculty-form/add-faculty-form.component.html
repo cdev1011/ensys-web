@@ -1,0 +1,65 @@
+<div class="example-form" style="padding-top:40px!important;">
+    <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()" >
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="First Name"  formControlName="faculty_fname">
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Middle Name"  formControlName="faculty_mname">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Lastname"  formControlName="faculty_lname">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Civil Status</mat-label>
+            <mat-select matNativeControl required name="civil_status" formControlName="civil_status">
+              <mat-option value="Male">Married</mat-option>
+              <mat-option value="Single">Single</mat-option>
+              <mat-option value="Widowed">Widowed</mat-option>
+              <mat-option value="Divorced">Divorced</mat-option>
+              <mat-option value="Seperated">Seperated</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        
+        <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Age"  formControlName="age">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Designation"  formControlName="designation">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Years in service"  formControlName="years_in_service">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Professional Organization"  formControlName="profesional_organization">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Specialization"  formControlName="specialization">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Highest Educational Qualification"  formControlName="highest_educ_qualification">
+        </mat-form-field>
+
+        
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Employment Status"  formControlName="employment_status">
+        </mat-form-field>
+
+        <mat-label>Profile Picture</mat-label><br>
+        <input class="mb-3" type="file" name="profile" (change)="onFileSelect($event)" />
+
+        <div class="form-field">
+                <button mat-button mat-raised-button type="submit" class="example-full-width" color="primary">Save</button>
+        </div>
+    </form>
+  </div>
+  

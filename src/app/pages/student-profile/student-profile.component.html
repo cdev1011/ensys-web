@@ -1,0 +1,562 @@
+<form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+  <div class="main">
+    <div class="pink-div"></div>
+    <div class="blue-circle">
+      <img [src]="imgURL" *ngIf="imgURL">
+      <p class="img__description" (click)="fileInput.click()">Change</p>
+    </div>
+    <div class="yellow-div"></div>
+  </div>
+  <span style="color:red;" *ngIf="message">{{message}}</span>
+  <input #fileInput type="file" name="profile" (change)="onFileSelect($event)" style="display:none;" />
+</form>
+<mat-tab-group>
+
+  <mat-tab label="Profile">
+    <div class="container">
+
+      <button mat-button mat-raised-button class="mb-3" (click)="toggleEdit()"
+        style="background-color: white; color: #74b9ff; border: 1px solid #74b9ff;">Edit Profile</button>
+
+      <div class="update-profile-form" [hidden]="isEditMode">
+        <mat-toolbar class="page-toolbar mb-3">Edit Information</mat-toolbar>
+
+        <form [formGroup]="uploadForm" (ngSubmit)="ProfileUpdate()">
+
+          <div class="row">
+            <div class="col-4">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Surname</mat-label>
+                <input matInput formControlName="student_lname" placeholder="">
+              </mat-form-field>
+            </div>
+            <div class="col-4 ">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="student_fname" placeholder="">
+              </mat-form-field>
+            </div>
+            <div class="col-2">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Middle Initial</mat-label>
+                <input matInput formControlName="student_mname" placeholder="">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-10">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Home Address</mat-label>
+                <input matInput formControlName="home_address" placeholder="">
+              </mat-form-field>
+            </div>
+            <div class="col-2">
+              <mat-form-field class="full-width">
+                <mat-label>Gender</mat-label>
+                <mat-select matNativeControl name="civil_status" formControlName="gender">
+                  <mat-option value="Male">Male</mat-option>
+                  <mat-option value="Female">Female</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-3">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput formControlName="date_of_birth" type="date" placeholder="">
+              </mat-form-field>
+            </div>
+            <div class="col-2">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Age</mat-label>
+                <input matInput formControlName="age" type="number" placeholder="">
+              </mat-form-field>
+            </div>
+            <div class="col-7">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Place of Birth</mat-label>
+                <input matInput formControlName="birthplace" placeholder="">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-3">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput formControlName="mobile_number" type="number" placeholder="">
+              </mat-form-field>
+            </div>
+            <div class="col-9">
+              <mat-form-field class="full-width">
+                <mat-label>Select Course</mat-label>
+                <mat-select matNativeControl required formControlName="course_id">
+                  <mat-option *ngFor="let course of courses" [value]="course.course_id">
+                    {{ course.full_course_desc }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-9">
+              <mat-form-field class="full-width">
+                <mat-label>Enrollment Status</mat-label>
+                <mat-select matNativeControl required formControlName="enrollment_status">
+                  <mat-option value="Regular">Regular</mat-option>
+                  <mat-option value="Irregular">Irregular</mat-option>
+                  <mat-option value="Graduate">Graduate</mat-option>
+                  <mat-option value="Dropped">Dropped</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-9">
+              <mat-form-field class="full-width">
+                <mat-label>Level</mat-label>
+                <mat-select matNativeControl required formControlName="current_year">
+                  <mat-option *ngFor="let level of levels" [value]="level.level_id">
+                    {{ level.level_desc }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <hr class="full-width">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-8">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Name of Father</mat-label>
+                <input matInput formControlName="fathers_name" placeholder="">
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Occupation</mat-label>
+                <input matInput formControlName="fathers_occup" placeholder="">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-8">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Name of Mother</mat-label>
+                <input matInput formControlName="mothers_name" placeholder="">
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Occupation</mat-label>
+                <input matInput formControlName="mother_occup" placeholder="">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-3">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Tel No. / Mobile No.</mat-label>
+                <input matInput formControlName="parent_tel" placeholder="">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <hr class="full-width">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-9">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Name of Guardian</mat-label>
+                <input matInput formControlName="guardian_name" placeholder="">
+              </mat-form-field>
+            </div>
+
+            <div class="col-3">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Relationship</mat-label>
+                <input matInput formControlName="guardian_rel" placeholder="">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-9">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Address of Guardian</mat-label>
+                <input matInput formControlName="guradian_Addr" placeholder="">
+              </mat-form-field>
+            </div>
+
+            <div class="col-3">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Tel No. / Mobile No.</mat-label>
+                <input matInput formControlName="guardian_tel" placeholder="">
+              </mat-form-field>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-4">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Occupation</mat-label>
+                <input matInput formControlName="guardian_occup" placeholder="">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <hr class="full-width">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <p style="float: left;">School Attended: </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-8">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Elementary</mat-label>
+                <input matInput formControlName="elem_attended" placeholder="">
+              </mat-form-field>
+            </div>
+
+            <div class="col-4">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Years Attended</mat-label>
+                <input matInput formControlName="elem_yrs_attd" placeholder="">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-8">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>High School</mat-label>
+                <input matInput formControlName="hs_attended" placeholder="">
+              </mat-form-field>
+            </div>
+
+            <div class="col-4">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Years Attended</mat-label>
+                <input matInput formControlName="hs_yrs_attd" placeholder="">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <hr class="full-width">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <p style="float: left;">Last school or College attended: </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-10">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Name and Address of school</mat-label>
+                <input matInput formControlName="lst_cllg_attd" placeholder="">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-8">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Course/Year Level</mat-label>
+                <input matInput formControlName="attd_cllg_lvl" placeholder="">
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>School Year</mat-label>
+                <input matInput type="number" formControlName="attd_cllg_sy" placeholder="">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <button mat-button mat-raised-button class="mb-3" type="submit"
+                style="background-color: #74b9ff; color: white; border: 1px solid #74b9ff;float: right;">Save
+                Changes</button>
+
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="personal-info-container" [hidden]="isViewMode">
+
+        <mat-toolbar class="page-toolbar mb-3">Personal Information</mat-toolbar>
+
+        <mat-card style="background-color: #eeebeb;" class="mb-3">
+          <div class="row">
+            <div class="col-6">
+              First Name: {{ studentInformation?.student_fname }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Middle Name: {{ studentInformation?.student_mname }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Last Name: {{ studentInformation?.student_lname }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Date of Birth: {{ studentInformation?.date_of_birth }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Gender: {{ studentInformation?.gender }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Birthplace: {{ studentInformation?.birthplace }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Age: {{ studentInformation?.age }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Home Address: {{ studentInformation?.home_address }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Mobile Number: {{ studentInformation?.mobile_number }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Is Transferee: {{ isTransferee(studentInformation?.tranfer_flag) }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Level: {{ studentInformation?.current_year }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Enrollment Status: {{ studentInformation?.enrollment_status }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Course: {{ studentInformation?.course_full_desc }}
+            </div>
+          </div><br>
+        </mat-card>
+
+        <mat-toolbar class="page-toolbar mb-3">Previous Schooling</mat-toolbar>
+
+        <mat-card style="background-color: #eeebeb;" class="mb-3">
+          <div class="row">
+            <div class="col-6">
+              Elementary School Attended: {{ studentInformation?.elem_attended }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Years Attended: {{ studentInformation?.elem_yrs_attd }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              High School Attended: {{ studentInformation?.hs_attended }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Years Attended: {{ studentInformation?.hs_yrs_attd }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Last College Attended: {{ studentInformation?.lst_cllg_attd }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Level: {{ studentInformation?.attd_cllg_lvl }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              School Year: {{ studentInformation?.attd_cllg_sy }}
+            </div>
+          </div><br>
+        </mat-card>
+
+
+        <mat-toolbar class="page-toolbar mb-3">Others</mat-toolbar>
+
+        <mat-card style="background-color: #eeebeb;" class="mb-3">
+          <div class="row">
+            <div class="col-6">
+              Mothers Name: {{ studentInformation?.mothers_name }}
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-6">
+              Mothers Occupation: {{ studentInformation?.mother_occup }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Fathers Name: {{ studentInformation?.fathers_name }}
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-6">
+              Fathers Occupation: {{ studentInformation?.fathers_occup }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Telephone No.: {{ studentInformation?.parent_tel }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Guardian's Name: {{ studentInformation?.guardian_name }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Relationship: {{ studentInformation?.guardian_rel }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Address: {{ studentInformation?.guradian_Addr }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Occupation: {{ studentInformation?.guardian_occup }}
+            </div>
+          </div><br>
+
+          <div class="row">
+            <div class="col-6">
+              Telephone Number: {{ studentInformation?.guardian_tel }}
+            </div>
+          </div><br>
+        </mat-card>
+
+      </div>
+
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Enrollments">
+    <mat-toolbar class="page-toolbar mb-3">Student Enrollments</mat-toolbar>
+
+    <div class="row mt-4 px-4 mt-3" class="full-width">
+      <div class="col-xl-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Search</mat-label>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+
+      <ng-container matColumnDef="year_semester">
+        <th mat-header-cell *matHeaderCellDef>Enrollment</th>
+        <td mat-cell *matCellDef="let element"> {{element.full_enrollment_desc}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="course">
+        <th mat-header-cell *matHeaderCellDef> Course </th>
+        <td mat-cell *matCellDef="let element"> {{element.course.course_title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="enrollement_date">
+        <th mat-header-cell *matHeaderCellDef> Date Enrolled </th>
+        <td mat-cell *matCellDef="let element"> {{element.enrollment_date}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Update">
+        <th mat-header-cell *matHeaderCellDef class="pl-3"></th>
+        <td mat-cell *matCellDef="let element"> <button mat-button (click)="viewEnrollment(element.enrollment_id)"
+            style="background-color: #70a1ff;color: white;">View</button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="Delete">
+        <th mat-header-cell *matHeaderCellDef class="pl-3"></th>
+        <td mat-cell *matCellDef="let element"> <button mat-button (click)="DeleteCourse(element.enrollment_id)"
+            style="background-color:#ff6b81;color:white">Remove</button></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </mat-tab>
+</mat-tab-group>

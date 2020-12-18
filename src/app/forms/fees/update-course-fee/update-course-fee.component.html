@@ -1,0 +1,40 @@
+<div class="example-form " style="padding-top:40px!important;">
+
+    <form #myform="ngForm" (ngSubmit)="update(myform)">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Price" name="price" [(ngModel)]="price">
+        </mat-form-field><br>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Fee Type</mat-label>
+            <mat-select matNativeControl required name="fee_type_id" [(ngModel)]="fee_type_desc">
+                <mat-option *ngFor="let type of feeTypes" [value]="type.fee_type_id">
+                    {{type.fee_type_desc}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field><br>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Course</mat-label>
+            <mat-select matNativeControl required name="course_id" [(ngModel)]="course_id">
+                <mat-option *ngFor="let course of courses" [value]="course.course_id">
+                    {{course.full_course_desc}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field><br>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>School Year</mat-label>
+            <mat-select matNativeControl required name="sy_id" [(ngModel)]="sy_id">
+                <mat-option *ngFor="let years of school_years" [value]="years.sy_id">
+                    {{years.sy_start}} - {{years.sy_end}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field><br>
+
+        <div class="form-field">
+            <button mat-button mat-raised-button type="submit" class="example-full-width" color="primary">Save</button>
+            <!-- <input mat-button type="submit" value="Save"> -->
+        </div>
+    </form>
+</div>

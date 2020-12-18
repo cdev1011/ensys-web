@@ -1,0 +1,16 @@
+<div class="example-form">
+    <mat-toolbar class="page-toolbar mb-2">Chart Settings</mat-toolbar>
+    <mat-form-field class="full-width">
+        <mat-label>Courses</mat-label>
+        <mat-select matNativeControl required name="course_id" ngModel (selectionChange)="courseSelectionChanged($event)">
+            <mat-option *ngFor="let course of courses" [value]="course">
+                {{course.full_course_desc}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="form-field mt-2">
+        <button mat-button mat-raised-button (click)="courseSelected()" class="full-width" color="primary">Save and
+            Exit</button>
+    </div>
+</div>

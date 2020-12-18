@@ -1,0 +1,29 @@
+<div class="example-form " style="padding-top:40px!important;">
+    <form #myform="ngForm" (ngSubmit)="update(myform)">
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Username" name="uac_name" [(ngModel)]="uac_name">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="FullName" name="uac_fullname" [(ngModel)]="uac_fullname">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Password" name="uac_pword" [(ngModel)]="uac_pword">
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+                <mat-label>Account Type</mat-label>
+                <mat-select matNativeControl required name="uac_type_id"  [(ngModel)]="uac_type_desc">
+                    <mat-option *ngFor="let type of AccountTypes" [value]="type.uac_type_id">
+                        {{type.uac_type_desc}}
+                      </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        <div class="form-field">
+            <button mat-button mat-raised-button type="submit" class="full-width" color="primary">Save</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,34 @@
+<div class="enrollment-container">
+  <h4>Enrollment Details</h4>
+  <mat-divider class="mb-3"></mat-divider>
+  <div class="row">
+      <div class="info mr-2">Semester:</div>   
+      <p>{{this.enrollment.semester_details.semester_desc}}</p>
+  </div>
+  <div class="row">
+      <div class="info mr-2">Subject:</div>
+      <p>{{this.enrollment.subject_details.subject_desc}}</p>
+  </div>
+  <div class="row">
+      <div class="info mr-2">Subject No:</div>
+      <p>{{this.enrollment.subject_details.subject_no}}</p>
+  </div>
+  <div class="row">
+      <div class="info mr-2">Days:</div>
+      <p>{{this.enrollment.subject_details.days}}</p>
+  </div>
+  <div class="row">
+      <div class="info mr-2">Faculty:</div>
+      <p>{{this.enrollment.faculty_details.faculty_fname + " " +
+          this.enrollment.faculty_details.faculty_mname + " " +
+        this.enrollment.faculty_details.faculty_lname}}</p>
+  </div>
+  <div class="row">
+      <div class="info mr-2">Level:</div>
+      <p>{{this.enrollment.level_details.level_desc}}</p>
+  </div>
+  <div class="row">
+      <div class="info mr-2">Course:</div>
+      <p>{{this.enrollment.course_details.course_desc}}</p>
+  </div>
+</div>

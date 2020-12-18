@@ -1,0 +1,23 @@
+<div class="example-form " style="padding-top:40px!important;">
+    <form #myform="ngForm" (ngSubmit)="update(myform)">
+        <mat-form-field>
+            <mat-label>Start</mat-label>
+            <mat-select matNativeControl required name="sy_start" [(ngModel)]="sy_start">
+                <mat-option *ngFor="let year of years" [value]="year.sy_start">
+                    {{year.sy_start}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field><br>
+
+
+        <mat-form-field>
+            <mat-label>End</mat-label>
+            <mat-select matNativeControl required name="sy_end" ngModel>
+                <mat-option *ngFor="let year of years" [value]="year.value">
+                    {{year.value}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </form>
+</div>

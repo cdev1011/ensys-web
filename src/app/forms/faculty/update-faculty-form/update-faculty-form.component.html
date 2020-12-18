@@ -1,0 +1,80 @@
+<mat-dialog-content style="overflow: hidden; max-height: 1000px;">
+     <div class="example-form">
+          
+          <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+               <!-- The profile image upload will be a seperate form -->
+               <div class="main">
+                    <div class="pink-div"></div>
+                    <div class="blue-circle">
+                         <img [src]="imgURL" *ngIf="imgURL"> 
+                         <p class="img__description"  (click)="fileInput.click()">Change</p>
+                    </div>
+                    <div class="yellow-div"></div>
+               </div>
+               <span style="color:red;" *ngIf="message">{{message}}</span>
+               <input #fileInput type="file" name="profile" (change)="onFileSelect($event)" style="display:none;" />
+          </form>
+
+          <form #myform="ngForm" (ngSubmit)="update(myform)">
+               <div style="padding:20px!important;">
+
+                    <mat-form-field class="input-field mt-1">
+                         <input matInput placeholder="First Name" name="faculty_fname" [(ngModel)]="faculty_fname">
+                    </mat-form-field>
+
+                    <mat-form-field class="input-field">
+                         <input matInput placeholder="Middle Name" name="faculty_mname" [(ngModel)]="faculty_mname">
+                    </mat-form-field>
+
+                    <mat-form-field class="input-field">
+                         <input matInput placeholder="Lastname" name="faculty_lname" [(ngModel)]="faculty_lname">
+                    </mat-form-field>
+
+                    <mat-form-field class="number-field mr-2">
+                         <input matInput placeholder="Age" name="age" type="number" [(ngModel)]="age">
+                    </mat-form-field>
+
+                    <mat-form-field>
+                         <mat-label>Civil Status</mat-label>
+                         <mat-select  matNativeControl required name="civil_status" [(ngModel)]="civil_status">
+                           <mat-option value="Male">Married</mat-option>
+                           <mat-option value="Single">Single</mat-option>
+                           <mat-option value="Widowed">Widowed</mat-option>
+                           <mat-option value="Divorced">Divorced</mat-option>
+                           <mat-option value="Seperated">Seperated</mat-option>
+                         </mat-select>
+                     </mat-form-field>
+
+                    <mat-form-field class="input-field">
+                         <input matInput placeholder="Designation" name="designation" [(ngModel)]="designation">
+                    </mat-form-field>
+
+                    <mat-form-field class="input-field">
+                         <input matInput type="number" placeholder="Years in service" name="years_in_service" [(ngModel)]="years_in_service">
+                    </mat-form-field>
+
+                    <mat-form-field class="input-field">
+                         <input matInput placeholder="Professional Organization" name="profesional_organization" [(ngModel)]="profesional_organization">
+                    </mat-form-field>
+
+                    <mat-form-field class="input-field">
+                         <input matInput placeholder="Specialization" name="specialization" [(ngModel)]="specialization">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width">
+                         <input matInput placeholder="Highest Educational Qualification" name="highest_educ_qualification" [(ngModel)]="highest_educ_qualification">
+                    </mat-form-field>
+
+                    <mat-form-field class="input-field">
+                         <input matInput placeholder="Employment Status" name="employment_status" [(ngModel)]="employment_status">
+                    </mat-form-field>
+
+                    <div class="form-field">
+                         <button mat-button mat-raised-button type="submit" class="example-full-width"
+                              color="primary">Save</button>
+                    </div>
+               </div>
+
+          </form>
+     </div>
+</mat-dialog-content>

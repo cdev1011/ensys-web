@@ -1,0 +1,18 @@
+<div class="example-form " style="padding-top:40px!important;">
+    <form #myform="ngForm" (ngSubmit)="register(myform)">
+
+        <mat-form-field  class="example-full-width">
+             <input matInput placeholder="Course No." name="subject_course_no"  [(ngModel)]="subject_course_no">
+        </mat-form-field>
+        
+        <mat-form-field  class="example-full-width">
+            <input matInput placeholder="Descriptive Title" name="descriptive_title" [(ngModel)]="descriptive_title">
+        </mat-form-field>
+
+        <div class="form-field">
+                <button mat-button mat-raised-button type="submit" class="example-full-width" color="primary">Save</button>
+                <!-- <input mat-button type="submit" value="Save"> -->
+        </div>
+    </form>
+  </div>
+  

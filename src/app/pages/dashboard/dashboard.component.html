@@ -1,0 +1,88 @@
+<mat-toolbar class="page-toolbar mb-3" style="color: white; background-color: #686de0;">Dashboard</mat-toolbar>
+<div class="dashboard-container">
+    <div class="row mb-3" hidden>
+        <div class="col-6" >
+            <div class="mat-card">
+                <mat-toolbar class="page-toolbar ">Enrollments By Semester</mat-toolbar>
+                <div style="text-align: right; padding: 10px;">
+                    <mat-form-field>
+                        <mat-label>School Year</mat-label>
+                        <mat-select matNativeControl required name="semester_id" ngModel
+                            (selectionChange)="semChanged($event)">
+                            <mat-option *ngFor="let sy of school_years" [value]="sy.sy_id">
+                                {{sy.sy_full_desc}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="chart-wrapper donut-chart" (window:resize)="onResize()">
+                    <canvas id="ChartOne">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="mat-card">
+                <mat-toolbar class="page-toolbar">Enrollments By Course (Male/Female) </mat-toolbar>
+                <div style="text-align: right; padding: 10px;">
+                    <mat-form-field style="width: 400px;">
+                        <mat-label>Course</mat-label>
+                        <mat-select matNativeControl required name="course_id" ngModel
+                            (selectionChange)="chartTwoChanged($event)">
+                            <mat-option *ngFor="let course of courses" [value]="course.course_id">
+                                {{course.full_course_desc}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="chart-wrapper donut-chart" (window:resize)="onResize()">
+                    <canvas id="ChartTwo">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" hidden>
+        <mat-toolbar class="page-toolbar"> Enrollments (Yearly)</mat-toolbar>
+        <div style="text-align: right; padding: 10px; width: 100%;">
+            <mat-form-field>
+                <mat-label>Year</mat-label>
+                <mat-select matNativeControl (selectionChange)="chartThreeChanged($event)">
+                    <mat-option *ngFor="let year of years" [value]="year">
+                        {{ year }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="chart-wrapper main-chart" (window:resize)="onResize()">
+            <canvas id="ChartThree">
+            </canvas>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+           <span> <label class="mr-2">Charts based on {{ getEnrollmentBasis() }} Enrollments</label>
+            <label style=" color: blue;" (click)="changeChartBasis()">Change</label></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <mat-toolbar class="page-toolbar"> Enrollments Per Semester</mat-toolbar>
+        <div class="chart-wrapper main-chart" (window:resize)="onResize()">
+            <canvas id="ChartFour">
+            </canvas>
+        </div>
+    </div>
+
+    <div class="row">
+        <mat-toolbar class="page-toolbar">Enrollments Per Semester (By Gender)</mat-toolbar>
+        
+        <div class="chart-wrapper main-chart" (window:resize)="onResize()">
+            <canvas id="ChartFive">
+            </canvas>
+        </div>
+    </div>
+</div>

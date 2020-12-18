@@ -1,0 +1,52 @@
+<div class="reports-container">
+
+    <!-- <div class="page-title-header">
+        <label>Subjects</label>
+        <mat-divider></mat-divider>
+    </div> -->
+  
+    <mat-toolbar class="page-toolbar mb-3">Enrollment History / Grades</mat-toolbar>
+  
+    <div class="mat-elevation-z8 px-4" style=" border-top: 20px solid #485460;">
+  
+  
+      <table mat-table [dataSource]="dataSource">
+  
+        <!-- Position Column -->
+        <ng-container matColumnDef="semester">
+          <th mat-header-cell *matHeaderCellDef> Semester </th>
+          <td mat-cell *matCellDef="let element">
+            {{element.semester_details.semester_desc}}
+            </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="subject">
+          <th mat-header-cell *matHeaderCellDef class="pl-3">Subject</th>
+          <td mat-cell *matCellDef="let element">{{element.subject_details.subject_desc}}</td>
+        </ng-container>
+  
+          
+        <ng-container matColumnDef="Remarks">
+            <th mat-header-cell *matHeaderCellDef  class="">Remarks</th>
+            <td mat-cell *matCellDef="let element"> {{element.grade_details}} </td>
+        </ng-container>
+          
+        <ng-container matColumnDef="View">
+          <th mat-header-cell *matHeaderCellDef class="pl-3">View</th>
+          <td mat-cell *matCellDef="let element"> <button mat-button (click)="viewEnrollmentDetail(element)"><i
+                class="material-icons">subject</i></button></td>
+        </ng-container>
+
+        <ng-container matColumnDef="Update Grades">
+            <th mat-header-cell *matHeaderCellDef  class="mx-auto">Update Grades</th>
+            <td mat-cell *matCellDef="let element"><button (click)="editGrades(element)" mat-button ><i
+              class="material-icons">edit</i></button> </td>
+          </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>

@@ -1,0 +1,61 @@
+<div class="page-container">
+
+    <mat-toolbar class="page-toolbar mb-3">Signatories Setup</mat-toolbar>
+  
+    <div class="row table-card">
+      <div class="col">
+        <mat-card>
+            <h4>Manage Signatories</h4>
+            <div class="row mt-2">
+                <div class="col-2 mr-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Search</mat-label>
+                    <input matInput (keyup)="filterCourseFees($event.target.value)" placeholder="">
+                    <mat-icon matSuffix>search</mat-icon>
+                  </mat-form-field>
+                </div>
+                <div class="col-8">
+                  <button mat-button appearance="outline" class=" mt-1 mr-2" style="height:40px;" (click)="newSignatory()"
+                  mat-flat-button color="primary">New Signatory</button>
+  
+                    <button mat-button appearance="outline" class=" mt-1 mr-2" style="height:40px;" (click)="ManageTypes()"
+                    mat-flat-button style="background-color:#54a0ff; color:white;">Signatory Types</button>
+
+                </div>
+                
+              </div>
+  
+              <table mat-table [dataSource]="signatoriesData">
+  
+                  <ng-container matColumnDef="signatory_person">
+                      <th mat-header-cell *matHeaderCellDef> Fullname </th>
+                      <td mat-cell *matCellDef="let signatory"> {{signatory.signatory_person}} </td>
+                    </ng-container>
+  
+                  <ng-container matColumnDef="sig_pos_desc">
+                    <th mat-header-cell *matHeaderCellDef> Position </th>
+                    <td mat-cell *matCellDef="let signatory"> {{signatory.sig_pos_desc}} </td>
+                  </ng-container>
+        
+        
+                  <ng-container matColumnDef="Update">
+                    <th mat-header-cell *matHeaderCellDef class="pl-3">Update</th>
+                    <td mat-cell *matCellDef="let signatory"> <button mat-button (click)="updateSignatory(signatory)"><i class="material-icons">edit</i></button></td>
+                  </ng-container>
+        
+                  <ng-container matColumnDef="Delete">
+                    <th mat-header-cell *matHeaderCellDef class="pl-3">Delete</th>
+                    <td mat-cell *matCellDef="let signatory"> <button mat-button (click)="DeleteSignatory(signatory.signatory_id)"><i
+                          class="material-icons">delete_outline</i></button>
+                    </td>
+                  </ng-container>
+        
+                  <tr mat-header-row *matHeaderRowDef="signatoriesColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: signatoriesColumns;"></tr>
+                </table>
+        
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </mat-card>
+      </div>
+    </div>
+  </div>

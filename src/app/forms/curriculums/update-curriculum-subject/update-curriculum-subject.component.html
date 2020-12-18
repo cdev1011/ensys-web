@@ -1,0 +1,142 @@
+<div class="example-form " style="padding-top:40px!important;">
+    <form #myform="ngForm" (ngSubmit)="updateSubject(myform)">
+
+        <div>
+            <h3 class="">Update Curriculum Info</h3>
+
+            <hr style="width: 100%;">
+
+            <div class="row mt-2">
+                <div class="col-8">
+                    <label>Subject: {{ this.selectedSubjectDesc }}</label>
+                </div>
+
+                <div class="col-4">
+                    <label style="color: #3498db; cursor: pointer;" (click)="toggleDisplay('Subject')">Change
+                        Subject</label>
+                </div>
+            </div>
+            <hr style="width: 100%; color: #ecf0f1;">
+
+            <div class="row mt-2">
+                <div class="col-8">
+                    <!-- <label>Prerequisite: {{ this.selectedPrerequisite }}</label> -->
+                    Prerequisites:
+                    <mat-chip-list #chipList aria-label="Prerequisites" class="mt-1">
+                        <mat-chip *ngFor="let prereq of prereq_array" [selectable]="selectable" [removable]="removable"
+                            (removed)="removePrereq(prereq)">
+                            {{prereq.description}}
+                            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
+
+                </div>
+                <div class="col-4">
+                    <label style="color: #3498db; cursor: pointer;" (click)="toggleDisplay('Prerequisite')">Add New
+                        Prerequisite</label>
+                </div>
+            </div>
+
+            <hr style="width: 100%;">
+
+            <div class="row">
+                <div class="col-3">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Select Level</mat-label>
+                        <mat-select matNativeControl name="level_id" [(ngModel)]="level_id">
+                            <mat-option *ngFor="let level of levels" [value]="level.level_id">
+                                {{level.level_desc}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Select Semester</mat-label>
+                        <mat-select matNativeControl name="semester_id" [(ngModel)]="semester_id">
+                            <mat-option *ngFor="let sem of semesters" [value]="sem.semester_id">
+                                {{sem.semester_desc}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-1" hidden>
+                    <mat-form-field class="example-full-width">
+                        <input matInput type="number" name="units" placeholder="Subject Units" [(ngModel)]="units">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-3">
+                    <mat-form-field class="example-full-width">
+                        <input matInput type="number" name="lec_units" placeholder="Lecture Units"
+                            [(ngModel)]="lec_units">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-3">
+                    <mat-form-field class="example-full-width">
+                        <input matInput type="number" name="lab_units" placeholder="Laboratory Units"
+                            [(ngModel)]="lab_units">
+                    </mat-form-field>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div [hidden]="isShow">
+            <hr style="width: 100%;">
+
+            <div style="width: 100%;background-color: #ecf0f1;" class="p-1">
+                <label style="font-weight: bold;color: #34495e;" class="mt-2">Select
+                    {{ this.getCurrentSelection() }}</label>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-xl-3">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Selection</mat-label>
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="">
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <table mat-table [dataSource]="dataSource">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="course_number">
+                    <th mat-header-cell *matHeaderCellDef> Course No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.subject_course_no}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="descriptive_title">
+                    <th mat-header-cell *matHeaderCellDef> Descriptive Title </th>
+                    <td mat-cell *matCellDef="let element"> {{element.descriptive_title}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="update">
+                    <th mat-header-cell *matHeaderCellDef class="pl-3"></th>
+                    <td mat-cell *matCellDef="let element">
+                        <label (click)="selectItem(element.descriptive_title,element.subject_id)"
+                            style="cursor: pointer; color: #3498db;">Select</label>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+        </div>
+
+        <div class="form-field">
+            <button mat-button mat-raised-button type="submit" class="example-full-width float-right"
+                color="primary">Finish</button>
+        </div>
+    </form>
+</div>

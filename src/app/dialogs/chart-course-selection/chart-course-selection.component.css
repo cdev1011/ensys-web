@@ -1,0 +1,10 @@
+.example-form {
+    min-width: 400px;
+    max-width: 500px;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .full-width {
+    width: 100%;
+  }

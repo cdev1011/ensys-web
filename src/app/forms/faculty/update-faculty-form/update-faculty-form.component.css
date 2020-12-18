@@ -1,0 +1,80 @@
+.example-form {
+    min-width: 250px;
+    max-width: 900px;
+    width: 100%;
+    background-color: white;
+  }
+  
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .input-field{
+    width:40%;
+    padding: 5px;
+  }
+
+  .number-field{
+    width:8%;
+    padding: 5px;
+  }
+
+  .mat-dialog-content {
+    padding-top:0!important;
+    padding:0!important;
+}
+
+.main {
+    /* prepare .main to center .blue-circle */
+    position: relative;
+    width: 100%;
+}
+
+.pink-div {
+    background-color: #2c3e50;
+    height: 100px;
+    margin-bottom: 50px;
+}
+
+.yellow-div {
+    background-color: white;
+    height: 40px;
+}
+
+.blue-circle , .img__description {
+    border-radius: 50%;
+    height: 160px;
+    width: 160px;
+    /* center .blue-circle inside .main */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    /* center .text-div inside .blue-circle using flexbox */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blue-circle img{
+  border-radius: 50%;
+  height: 160px;
+  width: 160px;
+}
+
+.blue-circle:hover .img__description {
+  visibility: visible;
+  opacity: 1;
+}
+.img__description {
+  background: rgba(29, 106, 154, 0.72);
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+
+  /* transition effect. not necessary */
+  transition: opacity .2s, visibility .2s;
+}

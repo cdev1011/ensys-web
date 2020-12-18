@@ -1,0 +1,29 @@
+<div class="example-form " style="padding-top:40px!important;">
+        <form #myform="ngForm" (ngSubmit)="update(myform)">
+               
+               <mat-form-field class="example-full-width">
+                    <mat-label>Course</mat-label>
+                    <mat-select matNativeControl  name="course_id" [(ngModel)]="course_desc">
+                        <mat-option *ngFor="let course of Courses" [value]="course.course_id">
+                            {{course.course_desc}}
+                          </mat-option>
+                    </mat-select>
+                </mat-form-field><br>
+
+                 
+               <mat-form-field class="example-full-width">
+                    <mat-label>Year</mat-label>
+                    <mat-select matNativeControl  name="curriculum_year" [(ngModel)]="year">
+                        <mat-option *ngFor="let year of years" [value]="year.curriculum_year">
+                            {{year.curriculum_year}}
+                          </mat-option>
+                    </mat-select>
+                </mat-form-field>
+    
+            <div class="form-field">
+                    <button mat-button mat-raised-button type="submit" class="example-full-width" color="primary">Save</button>
+                    <!-- <input mat-button type="submit" value="Save"> -->
+            </div>
+        </form>
+      </div>
+      

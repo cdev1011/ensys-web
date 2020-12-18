@@ -1,0 +1,12 @@
+.container {
+    width:60%;
+    margin: 0 auto;
+    text-align: center;
+    height: auto;
+    margin-top: 150px;
+    background-color: #f5f6fa;
+}
+    
+.full-width {
+    width: 37%;
+}

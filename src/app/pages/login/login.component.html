@@ -1,0 +1,26 @@
+<div class="page-container">
+    <mat-card class="login-container">
+        <div class="row h-100 w-100">
+            <div class="col left-content">
+                <div class="welcome-label">
+                    <label>Saint Tonis College</label><br>
+                    <label class="ml-4">Enrollment System</label>
+                </div>
+            </div>
+            <div class="col login-form">
+                <form #myform="ngForm" (ngSubmit)="Login(myform)">
+                     <label>Login</label><br>
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Username" name="username" ngModel>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width">
+                            <input matInput type="password" placeholder="Password" name="password" ngModel>
+                    </mat-form-field><br>
+
+                    <button mat-flat-button color="primary" class="mt-3 example-full-width">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </mat-card>
+</div>

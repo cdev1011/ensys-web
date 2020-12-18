@@ -1,0 +1,22 @@
+<div class="example-form " style="padding-top:40px!important;">
+    <form #myform="ngForm" (ngSubmit)="update(myform)">
+        <mat-form-field  class="example-full-width">
+             <input matInput placeholder="Type" name="fee_type_desc"  [(ngModel)]="fee_type_desc">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Department</mat-label>
+                <mat-select matNativeControl required name="fee_category_id" [(ngModel)]="fee_category_id">
+                    <mat-option *ngFor="let category of categories" [value]="category.fee_category_id">
+                        {{category.fee_category_desc}}
+                    </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="form-field">
+                <button mat-button mat-raised-button type="submit" class="example-full-width" color="primary">Save</button>
+                <!-- <input mat-button type="submit" value="Save"> -->
+        </div>
+    </form>
+  </div>
+  

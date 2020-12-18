@@ -1,0 +1,36 @@
+<mat-card class="container">
+    <div class="">
+        <h4>Create New Account</h4>
+
+        <div class="">
+            <form  #myform="ngForm" class="registration-form" (ngSubmit)="newAccount(myform)">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Username" value="" name="uac_name" ngModel>
+                </mat-form-field><br>
+
+                <mat-form-field class="full-width">
+                    <input type="text" matInput placeholder="Fullname" value="" name="uac_fullname" ngModel>
+                </mat-form-field><br>
+
+                <mat-form-field class="full-width">
+                    <input type="password" matInput placeholder="Password" value="" name="uac_pword" ngModel>
+                </mat-form-field><br>
+
+                <mat-form-field class="full-width">
+                    <input type="password" matInput placeholder="Confirm Password" value="" name="uac_pword_cpy" ngModel>
+                </mat-form-field><br>
+
+                <mat-form-field class="full-width">
+                    <mat-label>Account Type</mat-label>
+                    <mat-select matNativeControl name="uac_type" ngModel>
+                        <mat-option *ngFor="let types of AccountTypes" [value]="types.uac_type_id">
+                            {{types.uac_type_desc}}
+                          </mat-option>
+                    </mat-select>
+                </mat-form-field><br>
+
+                <button class="full-width mt-3" mat-flat-button color="primary">Create Account</button>
+            </form>
+        </div>
+    </div>
+</mat-card>

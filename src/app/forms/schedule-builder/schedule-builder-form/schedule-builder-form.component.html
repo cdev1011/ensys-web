@@ -1,0 +1,62 @@
+<div class="reports-container">
+        <mat-toolbar class="page-toolbar mb-3">New Schedule</mat-toolbar>
+    <div class="mat-elevation-z8 form-container" style=" border-top: 20px solid #485460;">
+
+        <form class="example-form" [formGroup]="scheduleForm" (ngSubmit)="newSchedule()">
+
+            <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Course" matInput [formControl]="myControl" [matAutocomplete]="auto"
+                    formControlName="semester">
+
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let semester of filteredOptions | async" [value]="semester">
+                        {{semester.semester_desc}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Subjects" matInput [formControl]="subjectData" [matAutocomplete]="x"
+                    formControlName="subjects">
+
+                <mat-autocomplete #x="matAutocomplete" [displayWith]="displaySbj">
+                    <mat-option *ngFor="let subjects of filteredSubjects | async" [value]="subjects">
+                        {{subjects.subject_desc}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+
+
+            <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Levels" matInput [formControl]="lvlData" [matAutocomplete]="lvl"
+                    formControlName="levels">
+
+                <mat-autocomplete #lvl="matAutocomplete" [displayWith]="displayLvl">
+                    <mat-option *ngFor="let levels of filteredLevels | async" [value]="levels">
+                        {{levels.level_desc}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+            
+            <mat-form-field class="example-full-width">
+                <input type="text" placeholder="Faculty" matInput [formControl]="facultyData" [matAutocomplete]="fcy"
+                    formControlName="faculty">
+
+                <mat-autocomplete #fcy="matAutocomplete" [displayWith]="displayFaculty">
+                    <mat-option *ngFor="let faculty of filteredFaculty | async" [value]="faculty">
+                        {{faculty.faculty_fname}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+
+
+            <div class="form-field">
+                <button mat-button mat-raised-button type="submit" class="example-full-width"
+                    color="primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

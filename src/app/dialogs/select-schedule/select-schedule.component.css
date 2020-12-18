@@ -1,0 +1,54 @@
+table {
+    width: 100%;
+    margin: 0 auto;
+    }
+  
+  table th {
+   text-align: left;
+  }
+
+  .full-width {
+    width: 37%;
+}
+
+  
+    
+  .mat-cell{
+    /* text-align: justify; */
+    /* text-align-last: center; */
+    padding: 5px;
+  }
+  
+  
+  .reports-container{
+    min-width: 1500px;
+    max-width: 1900px;
+    height: 700px;
+    width:100%;
+    padding-top: 30px;
+
+  }
+  
+  .container-label{
+    border-left: 10px solid #4162B2;
+  }
+  
+  .page-title-header{
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  
+  .page-title-header label{
+    display: inline-block;
+    margin-right: 20px;
+    color: #a4b0be;
+    font-size: 25px;
+  }
+
+  ::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
+  ::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+
+  ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+      transform: translateY(-1.1em) scale(.75);
+      width: 133.33333%;
+  }

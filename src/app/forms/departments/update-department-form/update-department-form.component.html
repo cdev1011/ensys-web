@@ -1,0 +1,13 @@
+<div class="example-form " style="padding-top:40px!important;">
+    <form #myform="ngForm" (ngSubmit)="update(myform)">
+        <mat-form-field  class="example-full-width">
+             <input matInput placeholder="Department Name" name="department_desc"  [(ngModel)]="department_desc">
+        </mat-form-field>
+
+        <div class="form-field">
+                <button mat-button mat-raised-button type="submit" class="example-full-width" color="primary">Save</button>
+                <!-- <input mat-button type="submit" value="Save"> -->
+        </div>
+    </form>
+  </div>
+  

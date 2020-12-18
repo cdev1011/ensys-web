@@ -1,0 +1,55 @@
+<div class="example-form " style="padding-top:40px!important;">
+
+    <mat-toolbar class="page-toolbar mb-3"> Edit Grades</mat-toolbar>
+
+    <form #myform="ngForm" (ngSubmit)="update(myform)">
+
+        <!-- <div class="row">
+            <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>Prelim</mat-label>
+                    <input matInput placeholder="" type="number" name="prelim_grade" [(ngModel)]="prelim_grade">
+                </mat-form-field>
+            </div>
+
+            <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>TMG</mat-label>
+                    <input matInput placeholder="" type="number" name="tmg" [(ngModel)]="tmg">
+                </mat-form-field>
+            </div>
+        </div> -->
+
+        <div class="row">
+            <!-- <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>Midterm</mat-label>
+                    <input matInput placeholder="" type="number" name="midterm_grade" [(ngModel)]="midterm_grade">
+                </mat-form-field>
+            </div>
+
+            <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>TFG</mat-label>
+                    <input matInput placeholder="" type="number" name="tfg" [(ngModel)]="tfg">
+                </mat-form-field>
+            </div> -->
+
+            <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>Final</mat-label>
+                    <input matInput placeholder="" type="text" name="final_grade" [(ngModel)]="final_grade">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Remarks" name="remarks" [(ngModel)]="remarks"> </textarea>
+        </mat-form-field>
+
+        <div class="form-field">
+            <button mat-button mat-raised-button type="submit" class="example-full-width" color="primary">Save</button>
+            <!-- <input mat-button type="submit" value="Save"> -->
+        </div>
+    </form>
+</div>

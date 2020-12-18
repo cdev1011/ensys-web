@@ -1,0 +1,67 @@
+<div class="reports-container">
+
+  <!-- <div class="page-title-header">
+              <label>Subjects</label>
+              <mat-divider></mat-divider>
+          </div> -->
+
+  <mat-toolbar class="page-toolbar mb-3">Schedules List</mat-toolbar>
+
+  <div class="mat-elevation-z8 px-4" style=" border-top: 20px solid #485460;">
+
+    <div class="row mt-4">
+      <div class="col-xl-2">
+        <mat-form-field appearance="outline">
+          <mat-label>Search</mat-label>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+      <button mat-button appearance="outline" class=" mt-1" style="height:40px;" (click)="newRecord()" mat-raised-button
+        color="primary">Create new schedule</button>
+    </div>
+
+    <table mat-table [dataSource]="scheduleData">
+
+      <ng-container matColumnDef="course_title">
+        <th mat-header-cell *matHeaderCellDef>Course</th>
+        <td mat-cell *matCellDef="let element"> {{element.curriculum_course}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="school_year">
+        <th mat-header-cell *matHeaderCellDef> School Year: </th>
+        <td mat-cell *matCellDef="let element"> {{element.sy_desc}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="curriculum">
+        <th mat-header-cell *matHeaderCellDef> Based on Curriculum for: </th>
+        <td mat-cell *matCellDef="let element"> {{element.based_on_curriculum}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="View">
+        <th mat-header-cell *matHeaderCellDef class="pl-3">View</th>
+        <td mat-cell *matCellDef="let element"> <button mat-button (click)="ShowCurriculum(element.schedule_id)"><i
+              class="material-icons">view_headline</i></button></td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Update">
+        <th mat-header-cell *matHeaderCellDef class="pl-3">Update</th>
+        <td mat-cell *matCellDef="let element"> <button mat-button (click)="UpdateItem(element)"><i
+              class="material-icons">edit</i></button></td>
+      </ng-container>
+
+      <ng-container matColumnDef="Delete">
+        <th mat-header-cell *matHeaderCellDef class="pl-3">Delete</th>
+        <td mat-cell *matCellDef="let element"> <button mat-button (click)="DeleteSchedule(element.schedule_id)"><i
+              class="material-icons">delete_outline</i></button></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="ScheduleColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: ScheduleColumns;"></tr>
+    </table>
+
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

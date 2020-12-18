@@ -1,0 +1,22 @@
+.profile-img-holder{
+    height:120px;
+    width: 120px;
+    background-size: cover;
+  }
+  
+  .active-profile label{
+    color: #34495e;
+  }
+  
+  .profile-img-holder img{
+    height:100%;
+    width: 100%;
+  }
+
+  table, th, td {
+    border: 1px solid black;
+  }
+
+  th{
+      text-align: center;
+  }

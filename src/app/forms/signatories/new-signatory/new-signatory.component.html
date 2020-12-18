@@ -1,0 +1,22 @@
+<div class="example-form" style="padding-top:40px!important;">
+    <form #myform="ngForm" (ngSubmit)="newSignatory(myform)">
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Position</mat-label>
+            <mat-select matNativeControl required name="sig_pos_id" ngModel>
+                <mat-option *ngFor="let types of signatoryTypes" [value]="types.sig_pos_id">
+                    {{types.sig_pos_desc}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field><br>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Fullname" name="signatory_person" ngModel>
+        </mat-form-field>
+
+
+        <div class="form-field">
+            <button mat-button mat-raised-button type="submit" class="example-full-width" color="primary">Save</button>
+        </div>
+    </form>
+</div>

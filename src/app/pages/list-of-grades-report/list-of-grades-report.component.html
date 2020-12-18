@@ -1,0 +1,81 @@
+<div class="col mt-3">
+    <button mat-flat-button style="background-color: #bdc3c7;" (click)="print()">Print Grade Sheet</button>
+</div>
+
+<div id="print-section" style="padding-top: 30px; padding-left: 10px; padding-right: 10px;">
+
+    <div class="row justify-content-center">
+
+        <div class="col-1">
+            <div class="profile-img-holder mx-auto">
+                <img src="assets/images/STCI-Logo-new.png" alt="" class="">
+            </div>
+        </div>
+
+        <div class="col-4 mt-3 pt-4" style="text-align: center;">
+            <div class="row">
+                <h4 style="margin: 0 auto;">
+                    SAINT TONIS COLLEGE, INC
+                </h4>
+            </div>
+
+
+            <div class="row mt-3">
+                <h5 style="margin: 0 auto;">
+                    {{ GetCourseDesc() }}
+                </h5>
+            </div>
+
+            <div class="row mt-3">
+                <h5 style="margin: 0 auto;">
+                    Copy Of Grades
+                </h5>
+            </div>
+
+            <div class="row mt-3">
+                <h5 style="margin: 0 auto;">
+                    {{ GetYearAndSemDesc() }}
+                </h5>
+            </div>
+        </div>
+
+        <div class="col-1">
+            <div class="profile-img-holder mx-auto">
+                <img src="assets/images/school_logo.png" alt="" class="">
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngFor="let levels of ReportsSummary;">
+        <label> {{ GetCourseCode() }} {{ levels.level}}</label>
+        <table style="width:100%">
+            <tr>
+                <th>No.</th>
+                <th>Student Name</th>
+                <th>Descriptive Title</th>
+                <th>Course No.</th>
+                <th>Grades</th>
+            </tr>
+            <tr>
+            <tr *ngFor="let student of levels.students;">
+                <td> {{ student.student_id }}</td>
+                <td> {{ student.student_name }}</td>
+                <td> <tr *ngFor="let grades of student.student_grades;">
+                {{ grades.descriptive_title }}
+             </tr>
+            </td>
+            <td>
+                <tr *ngFor="let grades of student.student_grades;">
+                    {{ grades.subject_course_no }}
+                </tr>
+            </td>
+            <td>
+                <tr *ngFor="let grades of student.student_grades;">
+                    {{ grades.final_grade }}
+                </tr>
+            </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="example-form " style="padding-top:40px!important;">
+    <form #myform="ngForm" (ngSubmit)="update(myform)">
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="" name="note_title"  [(ngModel)]="note_title">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Message" name="note_message" [(ngModel)]="note_message"> </textarea>
+        </mat-form-field>
+
+        <div class="form-field">
+                <button mat-button mat-raised-button type="submit" class="example-full-width" color="primary">Save</button>
+                <!-- <input mat-button type="submit" value="Save"> -->
+        </div>
+    </form>
+  </div>
+  

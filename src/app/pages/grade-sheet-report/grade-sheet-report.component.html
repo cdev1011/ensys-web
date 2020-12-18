@@ -1,0 +1,84 @@
+<div class="col mt-3">
+    <button mat-flat-button style="background-color: #bdc3c7;" (click)="print()">Print Grade Sheet</button>
+</div>
+
+<div id="print-section" style="padding-top: 30px; padding-left: 10px; padding-right: 10px;">
+
+    <div class="row justify-content-center">
+
+        <div class="col-1">
+            <div class="profile-img-holder mx-auto">
+                <img src="assets/images/STCI-Logo-new.png" alt="" class="">
+            </div>
+        </div>
+
+        <div class="col-4 mt-3 pt-4" style= "text-align: center;">
+            <div class="row">
+                <h4 style="margin: 0 auto;">
+                    SAINT TONIS COLLEGE, INC
+                </h4>
+            </div>
+
+            <div class="row mt-3">
+                <h5 style="margin: 0 auto;">
+                    Grading Sheet
+                </h5>
+            </div>
+
+            <div class="row mt-3">
+                <h5 style="margin: 0 auto;">
+                  {{ this.GetSemester() }}, SY {{ this.GetSy() }}
+                </h5>
+            </div>
+        </div>
+
+        <div class="col-1">
+            <div class="profile-img-holder mx-auto">
+                <img src="assets/images/school_logo.png" alt="" class="">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <label class="col-6">Subject: {{ this.GetCourseNo() }}</label>
+        <label class="col-6" style="text-align: right;">Course/Year: {{ this.GetCourse() }} {{ this.GetLevel() }}</label>
+    </div>
+
+    <table style="width:100%">
+        <tr>
+          <th rowspan="2">No.</th>
+          <th rowspan="2">Names</th>
+          <th colspan="5">Grading Period</th>
+          <th rowspan="2">Remarks</th>
+        </tr>
+        <tr>
+            <th>Prelim</th>
+            <th>TMG</th>
+            <th>Midterm</th>
+            <th>TFG</th>
+            <th>Final</th>
+        </tr>
+        <tr *ngFor="let element of StudentList; let i = index">
+            <th>{{ (i + 1) }} </th>
+            <th>{{ element.student_fname}}</th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+        <tr>
+            <th colspan="2" style="text-align: left;">TEACHER'S INITIAL</th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+      </table>
+
+
+</div>

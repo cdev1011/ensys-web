@@ -1,0 +1,42 @@
+<mat-toolbar class="page-toolbar mb-3">Student Enrollments</mat-toolbar>
+
+<div class="row mt-4 px-4 mt-3" class="full-width">
+  <div class="col-xl-3">
+    <mat-form-field appearance="outline">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+</div>
+
+<table mat-table [dataSource]="dataSource">
+
+  <!-- Position Column -->
+
+  <ng-container matColumnDef="year_semester">
+    <th mat-header-cell *matHeaderCellDef>Enrollment</th>
+    <td mat-cell *matCellDef="let element"> {{element.full_enrollment_desc}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="course">
+    <th mat-header-cell *matHeaderCellDef> Course </th>
+    <td mat-cell *matCellDef="let element"> {{element.course.course_title}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="enrollement_date">
+    <th mat-header-cell *matHeaderCellDef> Date Enrolled </th>
+    <td mat-cell *matCellDef="let element"> {{element.enrollment_date}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Update">
+    <th mat-header-cell *matHeaderCellDef class="pl-3"></th>
+    <td mat-cell *matCellDef="let element"> <button mat-button (click)="viewAssesment(element.enrollment_id)" style="background-color: #70a1ff;color: white;">View Assesment</button></td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

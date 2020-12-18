@@ -1,0 +1,145 @@
+<div class="reports-container">
+
+    <div class="row pl-5 pt-2">
+        <div class="row">
+            <div class="col">
+                <button mat-flat-button color="warn" (click)=toggleDisplay()>Toggle Edit</button>
+            </div>
+            <div class="col">
+                <button mat-flat-button color="primary" (click)=addNewSubject()>Insert New Schedule</button>
+            </div>
+            <div class="col">
+                <button mat-flat-button style="background-color: #bdc3c7;" (click)="print()">Print
+                    Schedule</button>
+            </div>
+        </div>
+    </div>
+
+    <hr style="width: 100%;" />
+    <div class="row pl-5">
+        <div class="col">
+            <form #myform="ngForm" (ngSubmit)="filterBySemester(myform)">
+                <mat-form-field class="example-full-width mr-2">
+                    <mat-label>Filter By Semester</mat-label>
+                    <mat-select matNativeControl required name="semester_id" ngModel>
+                        <mat-option *ngFor="let semester of semesters" [value]="semester.semester_id">
+                            {{semester.Semster}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-flat-button style="background-color: #ffffff; outline: none;" type="submit">
+                    <mat-icon matSuffix>search</mat-icon>
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="print-section" [hidden]="isShow">
+        <div class="row">
+            <h4 style="margin: 0 auto;">
+                {{ this.getCourseTitle() }}
+            </h4>
+        </div>
+
+        <div class="row">
+            <h4 style="margin: 0 auto;">
+                {{ this.getCourse() }}
+            </h4>
+        </div><br>
+
+        <div class="row">
+            <h5 style="margin: 0 auto;">
+                Class Program
+            </h5>
+        </div>
+
+        <div class="row">
+            <h5 style="margin: 0 auto;">
+                {{ this.getSemester() }} {{ this.getSchoolYear() }}
+            </h5>
+        </div>
+
+
+        <div class=" px-4">
+            <div class="mt-3" *ngFor="let element of scheduleSubjectData" style="width:100%;">
+
+                <div style="width: 100%!important; background-color: #575fcf; color: white; text-align: center;">
+                    <label style="font-weight: bold;">{{ element.level}}</label>
+                </div>
+
+
+
+                <div style="width:100%; background-color:#f1f2f6;">
+                    <div class="row header">
+                        <div class="col">
+                            <b>Course No.</b>
+                        </div>
+                        <div class="col">
+                            <b>Descriptive Title</b>
+                        </div>
+                        <div class="col">
+                            <b>Units</b>
+                        </div>
+                        <div class="col">
+                            <b>Time</b>
+                        </div>
+                        <div class="col">
+                            <b>Days</b>
+                        </div>
+                        <div class="col">
+                            <b>Room</b>
+                        </div>
+                        <div class="col">
+                            <b>Instructor</b>
+                        </div>
+                        <div class="col" [hidden]="isEditMode">
+                            <b></b>
+                        </div>
+                        <div class="col" [hidden]="isEditMode">
+                            <b></b>
+                        </div>
+                    </div>
+                    <div class="" *ngFor="let subject of element.subjects">
+                        <div class="row subjects-cell">
+                            <div class="col">
+                                {{subject.course_no}}
+                            </div>
+                            <div class="col">
+                                {{subject.descriptive_title}}
+                            </div>
+                            <div class="col">
+                                {{subject.curr_subject_units    }}
+                            </div>
+                            <div class="col">
+                                {{ fixTimeFormat(subject.start_time)}} - {{ fixTimeFormat(subject.end_time)}}
+                            </div>
+                            <div class="col">
+                                {{subject.days}}
+                            </div>
+                            <div class="col">
+                                {{subject.room_desc}}
+                            </div>
+                            <div class="col">
+                                {{subject.faculty_fname}} {{subject.faculty_mname}} {{subject.faculty_lname}}
+                            </div>
+                            <div class="col" [hidden]="isEditMode">
+                                <label (click)="deleteSchedule(subject.sched_sub_id)"
+                                    style="cursor:pointer; color: red;">Remove</label>
+                            </div>
+
+                            <div class="col" [hidden]="isEditMode">
+                                <label (click)="updateSchedule(subject)"
+                                    style="cursor:pointer; color: #3498db;">Update</label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div><br><br>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

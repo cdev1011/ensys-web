@@ -1,0 +1,27 @@
+<div class="example-form" style="padding-top:40px!important;">
+    <form #myform="ngForm" (ngSubmit)="newSchoolYear(myform)" >
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Start</mat-label>
+            <mat-select matNativeControl required name="sy_start" ngModel>
+                <mat-option *ngFor="let year of years" [value]="year.value">
+                    {{year.value}}
+                  </mat-option>
+            </mat-select>
+        </mat-form-field><br>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>End</mat-label>
+            <mat-select matNativeControl required name="sy_end" ngModel>
+                <mat-option *ngFor="let year of years" [value]="year.value">
+                    {{year.value}}
+                  </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="form-field">
+                <button mat-button mat-raised-button type="submit" class="example-full-width" color="primary">Save</button>
+        </div>
+    </form>
+  </div>
+  

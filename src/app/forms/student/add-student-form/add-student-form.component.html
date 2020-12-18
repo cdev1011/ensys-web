@@ -1,0 +1,72 @@
+<div class="container">
+  <mat-toolbar class="page-toolbar mb-3">New Student</mat-toolbar>
+  <div class="mat-elevation-z8 " style=" border-top: 20px solid #485460;">
+    <div class="form-container">
+      
+      <form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Firstname</mat-label>
+          <input matInput placeholder="" formControlName="fname">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Middle Name</mat-label>
+          <input matInput placeholder="" formControlName="mname">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Lastname</mat-label>
+          <input matInput placeholder="" formControlName="lname">
+        </mat-form-field>
+
+        <mat-form-field class="mr-3">
+          <mat-label>Gender</mat-label>
+          <mat-select matNativeControl required name="gender" formControlName="gender">
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="">
+          <input matInput [matDatepicker]="picker" placeholder="Birth Date" name="date_of_birth" formControlName="date_of_birth">
+          <mat-datepicker-toggle matSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Birth Place</mat-label>
+          <input matInput placeholder="" formControlName="birthplace">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Contact Number</mat-label>
+          <input matInput placeholder="" formControlName="contact_num">
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Mother's name</mat-label>
+          <input matInput placeholder="" formControlName="father_name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width">
+          <mat-label>Fathers's name</mat-label>
+          <input matInput placeholder="" formControlName="mother_name">
+        </mat-form-field>
+
+        <mat-label class="mr-2">Profile Picture</mat-label>
+        <input  class="mb-3" type="file" name="profile" (change)="onFileSelect($event)" />
+
+        <div class="form-field">
+          <button mat-button mat-raised-button type="submit" class="example-full-width" color="primary">Save</button>
+          <!-- <input mat-button type="submit" value="Save"> -->
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

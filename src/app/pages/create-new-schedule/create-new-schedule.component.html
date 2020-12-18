@@ -1,0 +1,193 @@
+<div class="example-form " style="padding-top:40px!important;">
+
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Select Subject</ng-template>
+
+                <hr style="width: 100%;" />
+
+                <div id="print-section">
+                    <div class="row">
+                        <h4 style="margin: 0 auto;">
+                            {{ this.getCollege() }}
+                        </h4>
+                    </div>
+
+                    <div class="row">
+                        <h4 style="margin: 0 auto;">
+                            {{ this.getCourse() }}
+                        </h4>
+                    </div>
+
+                    <div class="row">
+                        <label style="margin: 0 auto; font-weight: bold;">
+                            NEW CURRICULUM {{ this.getYear() }}
+                        </label>
+                    </div>
+
+
+                    <div class=" px-4">
+                        <div class="mt-3" *ngFor="let element of curriculumData" style="width:100%;">
+
+                            <div
+                                style="width: 100%!important; background-color: #575fcf; color: white; text-align: center;">
+                                <label style="font-weight: bold;">{{ element.level }}</label>
+                            </div>
+
+                            <div *ngFor="let semester of element.semester;"
+                                style="width:100%; background-color:#f1f2f6;">
+
+                                <div
+                                    style="width: 100%!important; background-color: #c8d6e5;color:#485460; text-align: center;">
+                                    <label style="font-weight: bold;">{{semester.semester_name}}</label>
+                                </div>
+                                <div class="row header">
+                                    <div class="col">
+                                        <b>Course No.</b>
+                                    </div>
+                                    <div class="col" style="font-weight: 500;">
+                                        <b>Descriptive Title</b>
+                                    </div>
+                                    <div class="col" style="font-weight: 500;">
+                                        <b>Prerequisite</b>
+                                    </div>
+                                    <div class="col" style="font-weight: 500;">
+                                        <b>Units</b>
+                                    </div>
+                                    <div class="col" style="font-weight: 500;">
+                                    </div>
+                                </div>
+                                <div class="" *ngFor="let details of semester.semester_subjects;">
+                                    <div class="row subjects-cell">
+                                        <div class="col">
+                                            {{details.subject_course_no}}
+                                        </div>
+                                        <div class="col">
+                                            {{details.descriptive_title}}
+                                        </div>
+                                        <div class="col">
+                                            {{details.prereq_course_no}}
+                                        </div>
+                                        <div class="col">
+                                            {{details.curr_subject_units}}
+                                        </div>
+                                        <div class="col">
+                                            <label (click)="selectSubject(details.curr_sub_id,stepper)"
+                                                style="cursor:pointer; color:#575fcf;">Select</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><br><br>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div> -->
+            </form>
+        </mat-step>
+
+        <!----------------------------------------------------------------------------------------------------------------------------->
+
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Fill out Schedule Information</ng-template>
+
+                <hr style="width: 100%;">
+
+                <div class="row mt-2">
+                    <div class="col-8">
+                        <label>Start and End of Class: </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2">
+                        <div class="row mt-4">
+                            <div class="col-xl-3">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>From</mat-label>
+                                    <input type="time" matInput placeholder="" formControlName="start">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="row mt-4">
+                            <div class="col-xl-3">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>To</mat-label>
+                                    <input type="time" matInput placeholder="" formControlName="end">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="width: 100%; color: #ecf0f1;">
+                <div class="row mt-2">
+                    <div class="col-8">
+                        <label>Room: {{ this.selectedRoomDesc }}</label>
+                    </div>
+
+                    <div class="col-4">
+                        <label style="color: #3498db; cursor: pointer;" (click)="selectRoom()">Choose
+                            Room</label>
+                    </div>
+                </div>
+                <hr style="width: 100%; color: #ecf0f1;">
+                <div class="row mt-2">
+                    <div class="col-8">
+                        <label>Instructor: {{ this.selectedFacultyName }} </label>
+                    </div>
+
+                    <div class="col-4">
+                        <label style="color: #3498db; cursor: pointer;" (click)="selectFaculty()">Choose
+                            Instructor</label>
+                    </div>
+                </div>
+                <hr style="width: 100%; color: #ecf0f1;">
+                <div class="row mt-2">
+
+                    <div class="col-8">
+                        <label>Days:</label>
+                    </div>
+
+                    <div class="col-4">
+                        <mat-form-field style="color: #3498db;">
+                            <mat-label style="color: #3498db;">Select Days</mat-label>
+                            <mat-select  multiple style="color: #3498db;" formControlName="days">
+                                <mat-option value="M">Monday</mat-option>
+                                <mat-option value="T">Tuesday</mat-option>
+                                <mat-option value="W">Wednesday</mat-option>
+                                <mat-option value="TH">Thursday </mat-option>
+                                <mat-option value="F">Friday</mat-option>
+                                <mat-option value="SA">Saturday</mat-option>
+                                <mat-option value="SUN">Sunday</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <hr style="width: 100%; color: #ecf0f1;">
+
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext (click)="submitData()">Next</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <!----------------------------------------------------------------------------------------------------------------------------->
+
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            You are now done.
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+
+</div>

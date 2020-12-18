@@ -1,0 +1,22 @@
+<div class="example-form " style="padding-top:40px!important;">
+
+    <form #myform="ngForm" (ngSubmit)="update(myform)">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Person Name" name="signatory_person" [(ngModel)]="signatory_person">
+        </mat-form-field><br>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Position</mat-label>
+            <mat-select matNativeControl required name="sig_pos_id" [(ngModel)]="sig_pos_id">
+                <mat-option *ngFor="let type of signatoryTypes" [value]="type.sig_pos_id">
+                    {{type.sig_pos_desc}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field><br>
+
+        <div class="form-field">
+            <button mat-button mat-raised-button type="submit" class="example-full-width" color="primary">Save</button>
+            <!-- <input mat-button type="submit" value="Save"> -->
+        </div>
+    </form>
+</div>

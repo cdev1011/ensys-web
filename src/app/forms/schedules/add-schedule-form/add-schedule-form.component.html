@@ -1,0 +1,28 @@
+<div class="example-form " style="padding-top:40px!important;">
+
+  <form #myform="ngForm" (ngSubmit)="addSchedule(myform)">
+
+      <mat-form-field class="full-width">
+          <mat-label>School Year</mat-label>
+          <mat-select matNativeControl required name="sy_id" [(ngModel)]="sy_id">
+              <mat-option *ngFor="let sy of schoolYears" [value]="sy.sy_id">
+                  {{sy.sy_start}} -  {{sy.sy_end}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field><br>
+
+      <mat-form-field class="full-width">
+          <mat-label>Based on Curriculum: </mat-label>
+          <mat-select matNativeControl required name="curriculum_id" [(ngModel)]="curriculum_id">
+              <mat-option *ngFor="let curr of curriculums" [value]="curr.curriculum_id">
+                  {{curr.course_code}}  {{curr.year}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field><br>
+
+      <div class="form-field">
+          <button mat-button mat-raised-button type="submit" class="example-full-width" color="primary">Save</button>
+          <!-- <input mat-button type="submit" value="Save"> -->
+      </div>
+  </form>
+</div>

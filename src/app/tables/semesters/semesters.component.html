@@ -1,0 +1,48 @@
+
+<div class="reports-container">
+
+    <!-- <div class="page-title-header">
+        <label>Subjects</label>
+        <mat-divider></mat-divider>
+    </div> -->
+
+    <mat-toolbar class="page-toolbar mb-3">Semesters</mat-toolbar>
+  
+    <div class="mat-elevation-z8 px-4" style=" border-top: 20px solid #485460;">
+
+      <div class="row mt-4">
+        <div class="col-xl-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Search</mat-label>
+            <input matInput  (keyup)="applyFilter($event.target.value)" placeholder="">
+            <mat-icon matSuffix>search</mat-icon>
+          </mat-form-field>          
+        </div>
+        <button mat-button appearance="outline" class=" mt-1" style="height:40px;" (click)="newRecord()" mat-raised-button color="primary">New Record</button>
+      </div>
+      
+      <table mat-table [dataSource]="dataSource">
+    
+        <!-- Position Column -->
+        <ng-container matColumnDef="Semester">
+          <th mat-header-cell *matHeaderCellDef>Semester</th>
+          <td mat-cell *matCellDef="let element"> {{element.semester_desc}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Update">
+          <th mat-header-cell *matHeaderCellDef class="pl-3">Update</th>
+          <td mat-cell *matCellDef="let element"> <button mat-button (click)="UpdateItem(element)"><i class="material-icons">edit</i></button></td>
+        </ng-container>
+        
+        <ng-container matColumnDef="Delete">
+          <th mat-header-cell *matHeaderCellDef class="pl-3">Delete</th>
+          <td mat-cell *matCellDef="let element"> <button mat-button (click)="DeleteSemester(element.semester_id)"><i class="material-icons">delete_outline</i></button></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>

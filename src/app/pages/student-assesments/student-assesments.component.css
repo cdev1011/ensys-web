@@ -1,0 +1,35 @@
+.container {
+    width:60%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    }
+  
+    .update-profile-form {
+      width: 100%;
+    }
+  
+    table {
+      width: 100%;
+      margin: 0 auto;
+      }
+    
+    table th {
+     text-align: left;
+    }
+    
+    
+    .mat-cell{
+      /* text-align: justify; */
+      /* text-align-last: center; */
+      padding: 5px;
+    }
+  
+
+  
+  .full-width {
+    width: 100%;
+  }
+
+  .example-full-width {
+    width: 100%;
+  }

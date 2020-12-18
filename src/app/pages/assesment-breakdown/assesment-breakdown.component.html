@@ -1,0 +1,210 @@
+<div id="print-section" style="padding-top: 30px; padding-left: 10px; padding-right: 10px;">
+
+    <div class="row justify-content-center">
+
+        <div class="col-1">
+            <div class="profile-img-holder mx-auto">
+                <img src="assets/images/STCI-Logo-new.png" alt="" class="">
+            </div>
+        </div>
+
+        <div class="col-4 mt-3 pt-4" style= "text-align: center;">
+            <div class="row">
+                <h4 style="margin: 0 auto;">
+                    SAINT TONIS COLLEGE, INC
+                </h4>
+            </div>
+
+            <div class="row mt-3">
+                <h6 style="margin: 0 auto;">
+                    {{ getStudyLoadHeader() }}
+                </h6>
+            </div>
+        </div>
+
+        <div class="col-1">
+            <div class="profile-img-holder mx-auto">
+                <img src="assets/images/school_logo.png" alt="" class="">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- <div class="row">
+        <h4 style="margin: 0 auto;">
+            Saint Tonis College, Inc
+        </h4>
+    </div><br> -->
+
+    <!-- <div class="row">
+        <h6 style="margin: 0 auto;">
+            {{ getStudyLoadHeader() }}
+        </h6>
+    </div> -->
+
+    <div class="mt-3" style="border: 1px solid grey;background-color: white;">
+
+        <div class="mt-3 row pt-2 px-3">
+            <div class="col-2">
+                <p>ID No. 23123-132-1</p>
+            </div>
+            <div class="col-3">
+                <p>Name: {{ getStudentName() }} </p>
+            </div>
+            <div class="col-2">
+                <p>Year: {{ getStudentLevel() }}</p>
+            </div>
+            <div class="col-2">
+                <p>Enrollment Date: {{ getEnrollmentDate() }}</p>
+            </div>
+        </div>
+
+        <div class="row px-3">
+            <div class="col-2">
+                <p>College: Graduate School</p>
+            </div>
+        </div>
+
+        <div class="row px-3">
+            <div class="col-3">
+                <p>Course: {{ getEnrolledCourse() }}</p>
+            </div>
+        </div>
+
+        <div class="mt-3" *ngFor="let element of enrollmentData" style="width:100%; border-top: 1px solid black;">
+            <div class="px-3 mt-2" style="padding-bottom: 100px;">
+                <div class="row header">
+                    <div class="col">
+                        <p>SUBJECT CODE</p>
+                    </div>
+                    <div class="col" style="font-weight: 500;">
+                        <p>DESCRIPTION</p>
+                    </div>
+                    <div class="col" style="font-weight: 500;">
+                        <div class="row">
+                            <div class="col">
+                                <p>Subject Units</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                Laboratory
+                            </div>
+                            <div class="col">
+                                Lecture
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" style="font-weight: 500;">
+                        <p>INSTRUCTOR</p>
+                    </div>
+                    <div class="col" style="font-weight: 500;">
+                        <p>ROOM</p>
+                    </div>
+                    <div class="col" style="font-weight: 500;">
+                        <p>SCHEDULE</p>
+                    </div>
+                </div>
+
+                <div class="pt-3" *ngFor="let subjects of element.subjects_enrolled">
+                    <div class="row subjects-cell mb-2">
+                        <div class="col">
+                            {{subjects.subject_info.subject_course_no}}
+                        </div>
+                        <div class="col">
+                            {{subjects.subject_info.descriptive_title}}
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    {{subjects.lab_units}}
+                                </div>
+                                <div class="col">
+                                    {{subjects.lec_units}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            {{subjects.faculty.faculty_fname}} {{subjects.faculty.faculty_mname}}
+                            {{subjects.faculty.faculty_lname}}
+                        </div>
+                        <div class="col">
+                            {{subjects.room}}
+                        </div>
+                        <div class="col">
+                            {{fixTimeFormat(subjects.schedule_subject.start_time) }} -
+                            {{fixTimeFormat(subjects.schedule_subject.end_time) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row subjects-cell mt-5">
+                    <div class="col">
+                        Total Number of Units: {{  getTotalUnits() }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col pl-3">
+                    Assesment Details:
+                </div>
+            </div>
+            <div class="px-3" *ngFor="let category of feeCategories" style="width:100%; border-top: 1px solid black;">
+                {{category.fee_category_desc}}
+                <div *ngFor="let fees of element.course_fees">
+
+                    <div class="ml-3 row" *ngIf="fees.fee_category_id == category.fee_category_id">
+
+                        <div class="col-3" *ngIf="fees.fee_type_desc != 'Unit Fee'">
+                            {{fees.fee_type_desc}}
+                        </div>
+                        <div class="col-3" *ngIf="fees.fee_type_desc == 'Unit Fee'">
+                            {{fees.fee_type_desc}} {{ getTotalUnits() }} * {{ fees.price }}/unit
+                        </div>
+
+                        <div class="col" *ngIf="fees.fee_type_desc != 'Unit Fee'">
+                            {{fees.price}}
+                        </div>
+                        <div class="col" *ngIf="fees.fee_type_desc == 'Unit Fee'">
+                            {{ getTotalUnitFee(fees.price) }}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row" style="width:100%; border-top: 1px solid black;" class="px-3">
+                Total Assesment: {{ getTotalEnrollmentFee() }}
+            </div>
+
+            <div class="px-3 mt-2 mb-4" style="width:100%; border-top: 1px solid black;">
+                <div class="row">
+                    Schedule of Payments
+                </div>
+                <div class="row ml-3">
+                    Upon Enrollment: 3000.00
+                </div>
+
+                <div class="row  ml-3">
+                    Prelim: {{ getRemainingBal() }}
+                </div>
+
+                <div class="row  ml-3">
+                    Midterm: {{ getRemainingBal() }}
+                </div>
+
+                <div class="row  ml-3">
+                    Finals: {{ getRemainingBal() }}
+                </div>
+            </div>
+
+            <div  style="width:100%; border-top: 1px solid black;" class=" px-3">
+                Processed By: {{ getUser() }}
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,94 @@
+<div class="example-form " style="padding-top:40px!important;">
+    <mat-toolbar>Update Schedule</mat-toolbar>
+    <form [formGroup]="secondFormGroup">
+
+        <hr style="width: 100%; color: #ecf0f1;">
+
+        <div class="row mt-2">
+            <div class="col-8">
+                <label style="font-weight:300;">Subject: {{ this.selectedSubjectDesc }}</label>
+            </div>
+
+            <div class="col-4">
+                <label style="color: #3498db; cursor: pointer;" (click)="selectSubject()">Change Subject</label>
+            </div>
+        </div>
+
+        <hr style="width: 100%; color: #ecf0f1;">
+
+        <div class="row">
+            <div class="col-8">
+                <label>Start and End of Class: </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <div class="row mt-4">
+                    <div class="col-xl-3">
+                        <mat-form-field appearance="outline">
+                            <mat-label>From</mat-label>
+                            <input type="time" matInput placeholder="" formControlName="start">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row mt-4">
+                    <div class="col-xl-3">
+                        <mat-form-field appearance="outline">
+                            <mat-label>To</mat-label>
+                            <input type="time" matInput placeholder="" formControlName="end">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="width: 100%; color: #ecf0f1;">
+        <div class="row mt-2">
+            <div class="col-8">
+                <label style="font-weight:300;">Room: {{ this.selectedRoomDesc }}</label>
+            </div>
+
+            <div class="col-4">
+                <label style="color: #3498db; cursor: pointer;" (click)="selectRoom()">Change
+                    Room</label>
+            </div>
+        </div>
+        <hr style="width: 100%; color: #ecf0f1;">
+        <div class="row mt-2">
+            <div class="col-8">
+                <label style="font-weight:300;">Instructor: {{ this.selectedFacultyName }} </label>
+            </div>
+
+            <div class="col-4">
+                <label style="color: #3498db; cursor: pointer;" (click)="selectFaculty()">Change
+                    Instructor</label>
+            </div>
+        </div>
+        <hr style="width: 100%; color: #ecf0f1;">
+        <div class="row mt-2">
+
+            <div class="col-8">
+                <label>Days: </label>
+            </div>
+
+            <div class="col-4">
+                <mat-form-field style="color: #3498db;width: 300px;">
+                    <mat-label style="color: #3498db;">Change Days</mat-label>
+                    <mat-select multiple style="color: #3498db;" formControlName="days">
+                        <mat-option value="M">Monday</mat-option>
+                        <mat-option value="T">Tuesday</mat-option>
+                        <mat-option value="W">Wednesday</mat-option>
+                        <mat-option value="TH">Thursday </mat-option>
+                        <mat-option value="F">Friday</mat-option>
+                        <mat-option value="SA">Saturday</mat-option>
+                        <mat-option value="SUN">Sunday</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <hr style="width: 100%; color: #d6d9da;">
+        <button style="float: right;" mat-button mat-raised-button type="submit" class="example-full-width" color="primary"  (click)="submitData()">Save Changes</button>
+    </form>
+</div>
